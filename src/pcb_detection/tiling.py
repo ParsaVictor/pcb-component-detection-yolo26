@@ -9,7 +9,6 @@ Only worth using when the source images are genuinely high resolution;
 on already-small images it costs time and gains nothing.
 """
 
-import cv2
 import numpy as np
 
 
@@ -62,6 +61,10 @@ def tile_inference(model, image_path, tile_size=640, overlap=0.2, conf=0.25, iou
     Returns a list of ``(x1, y1, x2, y2, score, class)`` in the coordinates of
     the original image, after NMS across tile boundaries.
     """
+    # Imported here rather than at module scope so that non_max_suppression -
+    # which is pure NumPy - stays usable without OpenCV installed.
+    import cv2
+
     image = cv2.imread(str(image_path))
     if image is None:
         raise FileNotFoundError(image_path)
