@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Never commit credentials
+.env
+*.key
+
+# Model weights and training runs
+*.pt
+runs/
+
+# The dataset is fetched from Roboflow, not committed (724 MB)
+PCB-1/
+PCB-*/
+datasets/
+data/train/
+data/valid/
+data/test/

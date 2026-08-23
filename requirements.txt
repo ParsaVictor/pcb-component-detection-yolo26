@@ -1,0 +1,8 @@
+ultralytics>=8.3
+torch>=2.0
+torchvision>=0.15
+opencv-python>=4.6
+numpy>=1.23
+matplotlib>=3.6
+tqdm>=4.64
+roboflow>=1.1

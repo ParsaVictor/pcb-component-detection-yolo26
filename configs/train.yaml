@@ -1,0 +1,16 @@
+# Baseline training configuration (reproduces the published numbers).
+
+model: yolov8n.pt        # Nano - baseline only; move to s/m for the real run
+epochs: 50
+imgsz: 640               # see docs/dataset-analysis.md: 1280 is the next step
+batch: 16
+lr0: 0.01
+workers: 8
+device: 0                # GPU index, or "cpu"
+
+project: runs/train
+name: pcb_yolov8
+
+# Collapse the 7 duplicate class labels before training.
+# Off for the baseline so the improvement can be measured against it.
+merge_duplicates: false

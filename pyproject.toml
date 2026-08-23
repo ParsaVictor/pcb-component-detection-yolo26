@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pcb-component-detection-yolov8"
+version = "0.1.0"
+description = "YOLOv8 detection of electronic components on populated PCBs, with dataset tooling and a diagnosis of the baseline's limits"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "Mohammad Parsa Karkooti", email = "1.parsa.karkooti@gmail.com" }]
+keywords = ["yolov8", "object-detection", "computer-vision", "pcb", "electronics", "ultralytics", "roboflow"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+dependencies = [
+    "ultralytics>=8.3",
+    "opencv-python>=4.6",
+    "numpy>=1.23",
+    "matplotlib>=3.6",
+    "tqdm>=4.64",
+    "roboflow>=1.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.2"]
+
+[project.urls]
+Homepage = "https://github.com/ParsaVictor/pcb-component-detection-yolov8"
+Dataset = "https://universe.roboflow.com/parsa-karkooti/pcb-wik5v-zonih"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
