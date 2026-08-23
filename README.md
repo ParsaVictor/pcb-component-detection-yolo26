@@ -19,8 +19,9 @@
 > **Status: baseline.** This is an honest first pass at a hard detection problem — 50 classes, 675,598 annotations, an average of 182 components per board. It reaches **mAP@50 = 0.231**, and the interesting part of this repository is not that number but the [diagnosis of why](docs/dataset-analysis.md) and the tooling built to fix it.
 
 <p align="center">
-  <img src="results/predictions/prediction_1.jpg" alt="Detection output on a populated board" width="420">
-  <img src="results/predictions/prediction_2.jpg" alt="Detection output on a populated board" width="420">
+  <img src="results/predictions/prediction_1.jpg" alt="Detections on a Philips board" width="415">
+  <img src="results/predictions/prediction_2.jpg" alt="Detections on a densely populated board" width="415">
+  <br><em>Left: ICs, connectors and capacitors found on a consumer board — and note <code>Capacitor</code>, <code>capacitor</code> and <code>Capacitor Jumper</code> all firing on the same region, which is the taxonomy problem below made visible. Right: connectors and ICs on a dense board.</em>
 </p>
 
 ## The problem
@@ -31,6 +32,11 @@ Detecting components on a populated PCB is not the same problem as classifying a
 - **Scale.** A board downscaled to 640 px leaves an 0402 passive a few pixels across.
 - **Taxonomy.** 50 classes, of which several are the same part under a different spelling.
 - **Imbalance.** Class frequency spans four orders of magnitude, from 4,988 instances down to 1.
+
+<p align="center">
+  <img src="results/training_batch.jpg" alt="A training batch with mosaic augmentation, showing annotation density" width="720">
+  <br><em>A single training batch. Every coloured box is one annotated component — this is what 182 components per board looks like, and why small-object detection is the binding constraint here.</em>
+</p>
 
 ## Baseline results
 
@@ -65,6 +71,10 @@ YOLOv8n, 50 epochs, 640 px, Colab GPU.
 
 ## The main finding: a broken taxonomy
 
+<p align="center">
+  <img src="results/dataset-analysis.png" alt="Three panels: the duplicate class labels, the class-frequency distribution, and mAP against instance count" width="1000">
+</p>
+
 Seven of the 50 classes are duplicates — the same physical component under a different spelling or letter case:
 
 | Duplicate | Canonical |
@@ -85,6 +95,16 @@ python scripts/train.py --data PCB-1/data.yaml --merge-duplicates
 The baseline above is deliberately the *un-merged* result, so the improvement can be measured against it rather than asserted.
 
 Full analysis in [`docs/dataset-analysis.md`](docs/dataset-analysis.md).
+
+## More detections
+
+<p align="center">
+  <img src="results/predictions/prediction_3.jpg" alt="Detections on an ACM-109 board" width="330">
+  <img src="results/predictions/prediction_4.jpg" alt="Detections on a populated board" width="330">
+  <img src="results/predictions/prediction_5.jpg" alt="Detections on a populated board" width="330">
+</p>
+
+The left board shows a second data problem the analysis picks up: `Unknown Unlabeled` fires across most of the passives, because that class absorbs everything the annotators did not name. It is a label of last resort competing with the real classes.
 
 ## Dataset
 
@@ -172,11 +192,15 @@ pcb-component-detection-yolov8/
 │   ├── dataset.py       # download, validation, duplicate-class merging
 │   ├── training.py      # train/evaluate wrappers over Ultralytics
 │   └── tiling.py        # tiled inference + class-aware NMS
-├── scripts/             # download_dataset.py, train.py, predict.py
+├── scripts/
+│   ├── download_dataset.py   # fetch from Roboflow + validate every label
+│   ├── train.py              # fine-tune, optionally merging duplicates
+│   ├── predict.py            # inference, whole-image or tiled
+│   └── make_analysis_figure.py  # regenerates the analysis figure above
 ├── notebooks/           # the original training notebook, with outputs
 ├── tests/               # 23 tests, no dataset or GPU required
 ├── data/samples/        # 6 boards, for inference without the full download
-├── results/             # baseline metrics and sample detections
+├── results/             # baseline metrics, analysis figure, sample detections
 ├── configs/train.yaml
 └── docs/dataset-analysis.md
 ```
