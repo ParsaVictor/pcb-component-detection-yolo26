@@ -1,0 +1,25 @@
+sources: ['parsa', 'carddata', 'dhbw']
+boards: 458  train/val/test boards: 366/46/46
+twin copies dropped: 0   duplicate boxes removed: 30
+
+FULL RESOLUTION, tiles 1024px overlap 25% (images stored once in fine/images)
+tiles train/val/test: 3005/321/292
+photos shrunk because their parts were larger than 64px: 138 of 458
+
+[fine] boxes per class (train / val / test)
+  Resistor                   27078    3037    4355
+  Capacitor                  28476    2680    2767
+  Electrolytic Capacitor      8710     981     817
+  IC                          9775    1253     987
+  Inductor                    2851     307     244
+  Diode                       3237     413     254
+  LED                          362      49      33
+  Transistor                  3405     439     205
+  Oscillator                   226      21      21
+  Connector                   2460     147     260
+  Switch/Button                259      17      11
+  Other                       1386     178     116
+  Marker                      1989     296     180
+
+[any] boxes per class (train / val / test)
+  component                  88218    9522   10070

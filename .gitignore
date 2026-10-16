@@ -27,3 +27,6 @@ datasets/
 data/train/
 data/valid/
 data/test/
+
+# trained weights are committed on purpose
+!weights/*.pt

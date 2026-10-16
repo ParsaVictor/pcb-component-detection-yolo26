@@ -1,0 +1,135 @@
+# Class mapping for the combined dataset. Edit freely, then re-run tools/build_dataset.py.
+# Keys are "<source>:<original class name>" as written in data/all_data/raw_classes.csv.
+# A raw class that is not listed anywhere is dropped (becomes background) and reported.
+#
+# Two training views are built from the same images:
+#   fine : the groups below                         (what is it?)
+#   any  : every group in `component_groups` becomes ONE class "component"  (is there something?)
+
+fine:
+  Resistor:
+    - parsa:Resistor
+    - parsa:Resistor Jumper      # same chip-resistor look, different annotator wording
+    - parsa:Resistor1
+    - parsa:Resistort
+    - parsa:Ressistor
+    - parsa:Resistance
+    - parsa:Resistor Network
+    - parsa:RP
+    - carddata:Resistor
+    - carddata:Resistor Jumper
+    - carddata:Resistor Network
+    - dhbw:Resistor
+  Capacitor:
+    - parsa:Capacitor
+    - parsa:Capacitor Jumper
+    - parsa:Capacitor Network
+    - carddata:Capacitor
+    - carddata:Capacitor Jumper
+    - carddata:Multilayer Ceramic Capacitor   # SMD chip capacitor
+    - dhbw:Capacitor
+  Electrolytic Capacitor:
+    - parsa:Electrolytic Capacitor
+    - parsa:Electrolytic capacitor
+    - parsa:capacitor            # lower-case 'capacitor' = big can/cylinder capacitors (checked by eye)
+    - carddata:Electrolytic Capacitor
+    - carddata:capacitor         # same can-type parts as parsa:capacitor (checked by eye, colour crops)
+    - tesis:capacitor
+  IC:
+    - parsa:IC
+    - carddata:IC
+    - carddata:iC
+    - carddata:Oscillator        # in carddata 'Oscillator' = big chipset/BGA parts (ATI, Intel...); crystals are 'Clock'
+    - dhbw:IC
+    - tesis:circuito_integrado
+    - tesis:procesador
+  Inductor:
+    - parsa:Inductor
+    - parsa:coil
+    - parsa:Ferrite Bead
+    - carddata:Inductor
+    - carddata:Ferrite Bead
+    - carddata:Processor         # in carddata 'Processor' = wound coils / toroids (checked by eye)
+    - dhbw:Inductor
+    - tesis:inductor
+  Diode:
+    - parsa:Diode
+    - parsa:Zener Diode
+    - carddata:Diode
+    - dhbw:Diode
+  LED:
+    - parsa:Led
+    - parsa:Indicator
+    - carddata:Led
+  Transistor:
+    - parsa:Transistor
+    - carddata:Transistor
+    - dhbw:Transistor
+    - tesis:transistor
+  Oscillator:
+    - parsa:Clock
+    - carddata:Clock
+    - dhbw:Oscillator
+    - tesis:oscilador
+  Connector:
+    - parsa:Connector
+    - carddata:Connector
+    - thai34:ket noi
+    - thai34:usb
+    - thai34:bnc
+  Switch/Button:
+    - parsa:Switch
+    - parsa:Button
+    - parsa:SK
+    - carddata:Switch
+    - carddata:Button
+    - thai34:buton
+  Other:                            # real components that are too rare or too ambiguous for their own class
+    - parsa:Fuse
+    - parsa:Unknown Unlabeled
+    - parsa:EM
+    - parsa:Jumper
+    - parsa:PS
+    - parsa:RC
+    - parsa:Filter
+    - parsa:Conductor
+    - parsa:Flex Cable
+    - parsa:Transformer
+    - parsa:Battery
+    - parsa:Buzzer
+    - parsa:Transducer
+    - parsa:Display
+    - parsa:Heatsink
+    - parsa:Potentiometer
+    - carddata:EM
+    - carddata:Jumper
+  Marker:                           # pads / holes / test points: board features, not components
+    - parsa:Pads
+    - parsa:Pins
+    - parsa:Test Point
+    - parsa:Fiducial
+    - carddata:Pads
+    - carddata:Pins
+    - carddata:Test Point
+
+# Fine groups that count as a "component" for the class-agnostic detector.
+# Marker is left out on purpose; add it here if pads should be detected as well.
+component_groups:
+  - Resistor
+  - Capacitor
+  - Electrolytic Capacitor
+  - IC
+  - Inductor
+  - Diode
+  - LED
+  - Transistor
+  - Oscillator
+  - Connector
+  - Switch/Button
+  - Other
+
+# Raw classes that are dropped on purpose
+drop:
+  - parsa:-
+  - thai34:main
+  - thai34:thai34

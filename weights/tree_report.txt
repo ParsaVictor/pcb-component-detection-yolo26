@@ -1,0 +1,17 @@
+RandomForest(100 trees, depth 10) - same settings as final_33.ipynb
+held-out 25% accuracy: 92.98%  (299 crops)
+
+              precision    recall  f1-score   support
+
+         ICs       0.97      0.91      0.94        32
+  capacitors       0.89      0.93      0.91        59
+      diodes       0.91      0.67      0.77        15
+   inductors       0.93      0.72      0.81        18
+   resistors       0.93      0.99      0.96       154
+ transistors       1.00      0.90      0.95        21
+
+    accuracy                           0.93       299
+   macro avg       0.94      0.85      0.89       299
+weighted avg       0.93      0.93      0.93       299
+
+saved model trained on all 1195 crops; classes ['ICs', 'capacitors', 'diodes', 'inductors', 'resistors', 'transistors']

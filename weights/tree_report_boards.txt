@@ -1,0 +1,28 @@
+RandomForest(100 trees, depth 10), final_33 features, trained on 12790 parts of the TRAIN boards
+accuracy on 2152 parts of the TEST boards: 54.8%
+  prob >= 0.3: keeps 67% of parts, accuracy 68.3%
+  prob >= 0.4: keeps 46% of parts, accuracy 78.9%
+  prob >= 0.5: keeps 30% of parts, accuracy 89.1%
+  prob >= 0.6: keeps 19% of parts, accuracy 91.2%
+  prob >= 0.7: keeps 11% of parts, accuracy 91.7%
+
+                        precision    recall  f1-score   support
+
+             Capacitor       0.73      0.47      0.57       380
+             Connector       0.56      0.75      0.64       145
+                 Diode       0.15      0.25      0.19       138
+Electrolytic Capacitor       0.74      0.80      0.77       379
+                    IC       0.82      0.63      0.72       399
+              Inductor       0.08      0.05      0.06       115
+                   LED       0.00      0.00      0.00        20
+            Oscillator       0.00      0.00      0.00        11
+                 Other       0.19      0.12      0.15        65
+              Resistor       0.54      0.53      0.53       394
+         Switch/Button       0.00      0.00      0.00         8
+            Transistor       0.29      0.81      0.43        98
+
+              accuracy                           0.55      2152
+             macro avg       0.34      0.37      0.34      2152
+          weighted avg       0.58      0.55      0.55      2152
+
+classes ['Capacitor', 'Connector', 'Diode', 'Electrolytic Capacitor', 'IC', 'Inductor', 'LED', 'Oscillator', 'Other', 'Resistor', 'Switch/Button', 'Transistor']
