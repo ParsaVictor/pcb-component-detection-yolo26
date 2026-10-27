@@ -16,6 +16,12 @@
 </p>
 
 <p align="center">
+  <a href="https://huggingface.co/datasets/ParsaVictor/pcb-component-detection"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-dataset-yellow.svg" alt="Hugging Face Dataset"></a>
+  <a href="https://huggingface.co/ParsaVictor/pcb-inspection-suite"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-full%20suite-yellow.svg" alt="Hugging Face Suite"></a>
+  <a href="https://huggingface.co/ParsaVictor"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-profile-blue.svg" alt="Hugging Face Profile"></a>
+</p>
+
+<p align="center">
   <img src="assets/pred_avnet_types.jpg" alt="YOLO26 PCB component detection on an Avnet IoT board: 156 components found and typed — capacitors, connectors, resistors, ICs, inductors, diodes, LEDs, oscillators" width="100%">
   <br><em>A held-out test board: 156 components located and typed in one pass. Grey <code>?</code> = located, type uncertain (handed to the refiner).</em>
 </p>
